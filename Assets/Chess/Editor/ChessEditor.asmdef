@@ -1,0 +1,18 @@
+{
+    "name": "ChessEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:70f0ac56feb7c2542a0ac6836e4bc83b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

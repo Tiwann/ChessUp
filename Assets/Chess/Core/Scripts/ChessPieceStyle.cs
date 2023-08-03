@@ -20,5 +20,6 @@ namespace Chess.Core
     {
         public ChesspieceSet BlackPieces;
         public ChesspieceSet WhitePieces;
+        public float ScaleOverride = 1.0f;
     }
 }

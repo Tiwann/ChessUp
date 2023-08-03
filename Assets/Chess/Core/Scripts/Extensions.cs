@@ -25,5 +25,10 @@ namespace Chess.Core
         {
             return Vec.Clamped(Min.x, Max.x, Min.y, Max.y, Min.z, Max.z);
         }
+
+        public static Vector2 Center(this Texture2D Tex)
+        {
+            return new Vector2(Tex.width / 2.0f, Tex.height / 2.0f);
+        }
     }
 }

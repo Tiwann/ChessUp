@@ -22,7 +22,12 @@ namespace Chess.Core
         [SerializeField] private ChessPieceType m_Type;
         [SerializeField] private Camera m_Camera;
         [SerializeField] private ChessBoard m_Board;
-        
+
+        public override string ToString()
+        {
+            return Type.GetName();
+        }
+
         public ChessPieceType Type
         {
             get => m_Type;
@@ -34,6 +39,9 @@ namespace Chess.Core
             get => m_Board;
             set => m_Board = value;
         }
+
+        public bool IsBlack() => Type.HasFlag(ChessPieceType.Black);
+        public bool IsWhite() => Type.HasFlag(ChessPieceType.White);
 
         private void Start()
         {

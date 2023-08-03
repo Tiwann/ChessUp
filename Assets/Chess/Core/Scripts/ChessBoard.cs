@@ -31,7 +31,8 @@ namespace Chess.Core
                                                        "PPPPPPPP" +
                                                        "RNBQKBNR";
 
-        private GameObject[] Squares = new GameObject[64];
+        public GameObject[] Squares { get; } = new GameObject[64];
+        public ChessPieceType[] Data { get; } = new ChessPieceType[64];
         
 
         private void Awake()
@@ -58,6 +59,7 @@ namespace Chess.Core
                 GameObject GameObject = Instantiate(m_SquarePrefab, Parent.transform);
                 GameObject.name = $"ChessSquare {(char)(Column + 65)}{Row + 1}";
                 GameObject.transform.position = Position;
+                GameObject.layer = LayerMask.NameToLayer("Squares");
                 Squares[i] = GameObject;
 
                 Quad Quad = GameObject.GetComponent<Quad>();
@@ -90,14 +92,18 @@ namespace Chess.Core
             for (int i = 0; i < Fen.Length; i++)
             {
                 ChessPieceType PieceType = Fen[i].GetTypeFromCharacter();
+                Data[i] = PieceType;
                 if (PieceType is ChessPieceType.None) continue;
                 
                 GameObject Piece = new GameObject(PieceType.GetName());
+                Piece.transform.SetParent(Squares[i].transform);
+                Piece.transform.localPosition = Vector3.back;
+                Piece.transform.localScale = Vector3.one * m_PieceStyle.ScaleOverride;
+                Piece.layer = LayerMask.NameToLayer("Pieces");
+                
                 ChessPiece PieceComponent = Piece.AddComponent<ChessPiece>();
                 PieceComponent.Type = PieceType;
                 PieceComponent.Board = this;
-                Piece.transform.SetParent(Squares[i].transform);
-                Piece.transform.localPosition = Vector3.zero;
                 
                 SpriteRenderer PieceSprite = Piece.AddComponent<SpriteRenderer>();
                 PieceSprite.sprite = PieceType.GetSprite(m_PieceStyle);

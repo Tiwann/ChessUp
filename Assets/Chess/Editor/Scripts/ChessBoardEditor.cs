@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Chess.Editor
 {
     [CustomEditor(typeof(ChessBoard))]
-    public class ChessBoardEditor : UnityEditor.Editor
+    public sealed class ChessBoardEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
